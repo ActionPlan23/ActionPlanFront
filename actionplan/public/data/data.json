@@ -1,0 +1,59 @@
+{
+  "plan": [
+    { "planId" : 2,
+      "title" : "운동_걷기",
+      "writer" : "mama",
+      "content" : "오늘 강변을 걷는데 사람이 많았어요. 다들 열심히 운동하시더라는..ㅎㅎ",
+      "planPassword": 1234,
+      "createdAt" : "2021-07-09T17:35:00",
+      "modifiedAt" : "2021-07-09T17:35:00",
+      "countReply": 3
+   },
+   { 
+      "planId" : 1,
+      "title" : "title2",
+      "writer" : "nana",
+      "content" : "this is content2",
+      "planPassword": 1234,
+      "createdAt" : "2021-07-09T16:35:00",
+      "modifiedAt" : "2021-07-09T16:35:00",
+      "countReply": 4
+   },
+   {   "planId" : 2,
+      "title" : "운동_걷기",
+      "writer" : "mama",
+      "content" : "오늘 강변을 걷는데 사람이 많았어요. 다들 열심히 운동하시더라는..ㅎㅎ",
+      "planPassword": 1234,
+      "createdAt" : "2021-07-09T17:35:00",
+      "modifiedAt" : "2021-07-09T17:35:00",
+      "countReply": 3
+    },
+    { "planId" : 2,
+      "title" : "운동_걷기",
+      "writer" : "mama",
+      "content" : "오늘 강변을 걷는데 사람이 많았어요. 다들 열심히 운동하시더라는..ㅎㅎ",
+      "planPassword": 1234,
+      "createdAt" : "2021-07-09T17:35:00",
+      "modifiedAt" : "2021-07-09T17:35:00",
+      "countReply": 3
+    },
+    { "planId" : 2,
+      "title" : "운동_걷기",
+      "writer" : "mama",
+      "content" : "오늘 강변을 걷는데 사람이 많았어요. 다들 열심히 운동하시더라는..ㅎㅎ",
+      "planPassword": 1234,
+      "createdAt" : "2021-07-09T17:35:00",
+      "modifiedAt" : "2021-07-09T17:35:00",
+      "countReply": 3
+    },
+    { "planId" : 2,
+      "title" : "운동_걷기",
+      "writer" : "mama",
+      "content" : "오늘 강변을 걷는데 사람이 많았어요. 다들 열심히 운동하시더라는..ㅎㅎ",
+      "planPassword": 1234,
+      "createdAt" : "2021-07-09T17:35:00",
+      "modifiedAt" : "2021-07-09T17:35:00",
+      "countReply": 3
+    }    
+  ]
+}

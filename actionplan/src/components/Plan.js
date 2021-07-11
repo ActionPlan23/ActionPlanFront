@@ -1,20 +1,62 @@
 import React from 'react';
-import { Grid, Text, } from '../elements';
-const Plan = () => {
+import { useDispatch } from 'react-redux';
+import {history} from "../redux/configStore";
+
+import { Grid, Text, Button } from '../elements';
+import { actionCreators } from '../redux/modules/plan';
+const Plan = (props) => {
+
+    const { id, planId, title, writer, content, planPassword, createdAt, modifiedAt, countReply } = props;
+    
+    const dispatch = useDispatch();
+    const editPlan = () => {
+        dispatch(actionCreators.editPlanServer(id, plan));
+        console.log(plan,"수정할 플랜");
+        history.replace("/");
+      }
+    const plan = {
+        "title" : "수정 제목",
+        "content" : "수정 내용",
+        "planPassword": 1234,
+      }      
+    const deletePlan = () => {
+        dispatch(actionCreators.deletePlanServer(id, {planPassword}));
+        console.log(id,"삭제할 플랜아이디");
+        history.replace("/");
+    }      
+
     return (
         <React.Fragment>
+            <Button _onClick={editPlan}>수정하기 테스트</Button>
+            <Button _onClick={deletePlan}>삭제하기 테스트</Button>
+
             <Grid border="1px solid black" margin="20px 0">
                 <Grid padding="10px 20px">
-                    <Text fontsize="20px" fontweight="bold" >운동_걷기</Text>
-                    <Text >오늘 강변을 걷는데 사람이 많았어요. 다들 열심히 운동하시더라는..ㅎㅎ</Text>
+                    <Text fontsize="20px" fontweight="bold" >{writer}</Text>
+                    <Text fontsize="20px" fontweight="bold" >{title}</Text>
+                    <Text>{content}</Text>
                 </Grid>
                 <Grid display="flex" justify="space-between" bgcolor="darkgray" padding="0px 20px">
-                    <Text>댓글 20</Text>
-                    <Text>2021.07.09</Text>
+                    <Text>댓글 {countReply}</Text>
+                    <Text>{createdAt}</Text>
+                    <Text>{modifiedAt}</Text>
+
                 </Grid>
             </Grid>
         </React.Fragment>
     );
 };
+
+
+Plan.defaultProps = {
+    planId : 0,
+    title : "",
+    writer : "",
+    content : "",
+    planPassword: 1234,
+    createdAt : "",
+    modifiedAt : "",
+    countReply: null
+}
 
 export default Plan;

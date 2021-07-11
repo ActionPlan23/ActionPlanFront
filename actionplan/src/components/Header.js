@@ -1,5 +1,8 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {Grid, Text, Button} from "../elements";
+import { useDispatch, } from 'react-redux';
+import {actionCreators} from "../redux/modules/plan";
+
 
 const Header = (props) => {
     if (props.write){
@@ -17,9 +20,6 @@ const Header = (props) => {
             <Grid display="flex" alignit="center" flexdir="column">
                 <Text color="black" fontsize="30px">오늘의 목표</Text>
                 <Text padding="0" margin="0">2021.07.09</Text>
-            </Grid>
-            <Grid width="150px">
-                <Button margin="0 13px 0 0" _onClick={()=>{}} >지난 목표 보기</Button>
             </Grid>
         </Grid>
     );
