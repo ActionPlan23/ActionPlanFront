@@ -7,7 +7,7 @@ import { actionCreators } from '../redux/modules/plan';
 const Plan = (props) => {
 
     const { id, planId, title, writer, content, planPassword, createdAt, modifiedAt, countReply } = props;
-    
+    //가짜 서버 작업을 위한 id임. 나중에 서버 만들어지면 빼야 됨!
     const dispatch = useDispatch();
     const editPlan = () => {
         dispatch(actionCreators.editPlanServer(id, plan));

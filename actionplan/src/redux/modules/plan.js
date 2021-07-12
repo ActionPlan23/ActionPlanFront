@@ -42,8 +42,6 @@ const getPlansServer = () => {
       //오늘 목표 불러오기
         axios.get('http://localhost:4000/plans')
         .then(function (response) {
-            console.log(response,"response");
-            console.log(response.data,"response.data");
             dispatch(setTodayPlan(response.data));
         })
         .catch(function (error) {
@@ -53,8 +51,6 @@ const getPlansServer = () => {
         //과거 목표 불러오기
         axios.get('http://localhost:4000/plans')
         .then(function (response) {
-            console.log(response,"response");
-            console.log(response.data,"response.data");
             dispatch(setPastPlan(response.data));
         })
         .catch(function (error) {
@@ -102,7 +98,7 @@ const addPlanServer = (plan={}) => {
       .then(function (response) {
           dispatch(editPlan(plan_id, plan));
           window.alert("게시글 수정 완료!");
-          history.replace("/");
+          history.push("/");
       })
       .catch(function (error) {
           console.log(error);
@@ -114,7 +110,7 @@ const addPlanServer = (plan={}) => {
 const deletePlanServer = (plan_id = null, plan_password={}) => {
   return function (dispatch, getState, { history }) {
     if (!plan_id) {
-      console.log("게시글 정보가 없어요!");
+      alert("게시글 정보가 없어요!");
       return;
     }
 
@@ -158,7 +154,7 @@ export default handleActions(
         produce(state, (draft) => {
           draft.all_list.unshift(action.payload.plan);
           draft.today_list.unshift(action.payload.plan);
-          // draft.past_list.unshift(action.payload.plan); //가짜 서버 테스트 용
+          draft.past_list.unshift(action.payload.plan); //가짜 서버 테스트 용
 
       }),
       [EDIT_PLAN]: (state, action) =>

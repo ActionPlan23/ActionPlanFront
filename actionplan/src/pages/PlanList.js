@@ -9,10 +9,8 @@ const PlanList = () => {
     const past_list = useSelector(state=>state.plan.past_list);
     const all_list = useSelector(state=>state.plan.all_list);
 
-    useEffect( () => {
-        
-    })
     const [ list, setList ] = useState("");
+
     const getToday = () => {
         setList(today_list);
     }
