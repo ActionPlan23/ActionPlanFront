@@ -2,8 +2,8 @@ import React from 'react';
 import styled from 'styled-components';
 
 const Input = (props) => {
-    const {children, placeholder, type, _onChange, value, textarea, width, border, border_radius,padding } = props;
-    const styles = {width: width, border: border, border_radius: border_radius, padding: padding }
+    const {display, children, placeholder, type, _onChange, value, textarea, width, border, border_radius,padding } = props;
+    const styles = {display : display, width: width, border: border, border_radius: border_radius, padding: padding }
     if (textarea) {
         return (
         <React.Fragment>
@@ -45,14 +45,17 @@ Input.defaultProps = {
     border_radius : "0px",
     width: "100%",
     padding: "12px 4px",
+    display: "block",
 }
 
 const Label = styled.label`
     font-size: 15px;
+    display: ${(props) => props.display};
+
 `;
 
 const RealInput = styled.input`
-    display: block;
+    display: ${(props) => props.display};
     border: ${(props) => props.border};
     border-radius: ${(props) => props.border_radius};
     width: ${(props) => props.width};
@@ -67,7 +70,6 @@ const Textarea = styled.textarea`
     box-sizing: border-box;
     width: 100%;
     height: 80%;
-
 `;
 
 export default Input;
