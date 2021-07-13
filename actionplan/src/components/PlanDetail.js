@@ -3,21 +3,29 @@ import {Grid, Text, Button} from "../elements"
 import CreateIcon from '@material-ui/icons/Create';
 import DeleteOutlineIcon from '@material-ui/icons/DeleteOutline';
 import styled from "styled-components";
+import { history } from "../redux/configStore";
+import { useSelector, useDispatch } from "react-redux";
 
 const PlanDetail = (props) =>{
+
+   
     const [popup, handlePopup] = React.useState(false);
+    console.log(props.title);
+   
     return(
-        <React.Fragment 
-       >
+        <React.Fragment >
+           <Button _onClick={()=>{
+               history.goBack();
+           }}>뒤로가기</Button>
             <Grid border="1px solid black" padding="20px" height="500px" 
              _onClick={()=>{
                 handlePopup(false);
             }}>
                <Grid height="350px">
-                   <Text fontsize="30px">[운동]걷기</Text>
+                   <Text fontsize="30px">{props.title}</Text>
                   
                
-                <Text>오늘 강변을 걷는데 사람이 많았어요...! 다들 열심히 운동하시더라는ㅎㅎ</Text>
+                <Text>{props.content}</Text>
                </Grid>
                
                  <Grid is_flex width="100px" >
@@ -31,6 +39,17 @@ const PlanDetail = (props) =>{
 
         </React.Fragment>
     )
+}
+
+PlanDetail.defaultProps={
+    planId : 1,
+    title : "defaultprops",
+    writer : "default작성자",
+    content: "defalt목표의 내용",
+    planPassword: "1234",
+    createdAt : "2021-07-07T16:35:00",
+    modifiedAt : "2021-07-07T16:35:00",
+    countReply: 4
 }
 
 const PasswordPop = styled.div`

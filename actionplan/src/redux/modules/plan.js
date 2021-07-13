@@ -5,6 +5,7 @@ import axios from "axios";
 const SET_TODAY_PLAN = "SET_TODAY_PLAN";
 const SET_PAST_PLAN = "SET_PAST_PLAN";
 const SET_ALL_PLAN = "SET_ALL_PLAN";
+const SET_PLAN = "SET_PLAN";
 
 const ADD_PLAN = "ADD_PLAN";
 const EDIT_PLAN = "EDIT_PLAN";
@@ -15,6 +16,7 @@ const setTodayPlan = createAction(SET_TODAY_PLAN, (plan_list) => ({ plan_list })
 const setPastPlan = createAction(SET_PAST_PLAN, (plan_list) => ({ plan_list }));
 const setAllPlan = createAction(SET_ALL_PLAN, (plan_list) => ({ plan_list }));
 
+const setPlan = createAction(SET_PLAN, (plan_list)=>({plan_list}));
 const addPlan = createAction(ADD_PLAN, (plan) => ({ plan }));
 const editPlan = createAction(EDIT_PLAN, (plan_id, plan) => ({
   plan_id,
@@ -28,28 +30,26 @@ const initialState = {
     today_list: [],
     past_list: [],
     all_list: [],
-
+    plan:[],
     is_loading: false,
 };
 
-const initialPlan = {
-
-};
 
 
-const getPlansServer = () => {
+//action creators
+//목표 불러오기
+const getPlansSV = () => {
     return function(dispatch){
       //오늘 목표 불러오기
-        axios.get('http://localhost:4000/plans')
+        axios.get('http://localhost:4000/api/todayplan')
         .then(function (response) {
             dispatch(setTodayPlan(response.data));
         })
         .catch(function (error) {
             console.log(error);
         })
-
         //과거 목표 불러오기
-        axios.get('http://localhost:4000/plans')
+        axios.get('http://localhost:4000/api/pastplan')
         .then(function (response) {
             dispatch(setPastPlan(response.data));
         })
@@ -57,23 +57,27 @@ const getPlansServer = () => {
             console.log(error);
         })
 
-        //전체 목표 불러오기
-        axios.get('http://localhost:4000/plans')
-        .then(function (response) {
-            console.log(response,"response");
-            console.log(response.data,"response.data");
-            dispatch(setAllPlan(response.data));
-        })
-        .catch(function (error) {
-            console.log(error);
-        })
     }
 }
 
+// 디테일 페이지에서 하나만 가져오기
+const getOnePlanSV = (id) => {
+  console.log("getOnePlanSV 실행")
+  return function(dispatch, getState, {history}){
+    axios.get('http://localhost:4000/api/plan/'+1)
+    .then(res=> {
+      console.log(res.data);
+      dispatch(setPlan(res.data));
+    })
+  }
+    
+};
 
+
+// 문제?
 const addPlanServer = (plan={}) => {
   return function (dispatch, getState, { history }) {
-    axios.post('http://localhost:4000/plans',plan)
+    axios.post('http://localhost:4000/api/plan',plan)
     .then(function (response) {    
       dispatch(addPlan(plan));
       window.alert("게시글 추가 완료!");
@@ -94,7 +98,7 @@ const addPlanServer = (plan={}) => {
         return;
       }
   
-      axios.put(`http://localhost:4000/plans/${plan_id}`,plan)
+      axios.put(`http://localhost:4000/plan/${plan_id}`,plan)
       .then(function (response) {
           dispatch(editPlan(plan_id, plan));
           window.alert("게시글 수정 완료!");
@@ -114,7 +118,7 @@ const deletePlanServer = (plan_id = null, plan_password={}) => {
       return;
     }
 
-    axios.delete(`http://localhost:4000/plans/${plan_id}`,plan_password)
+    axios.delete(`http://localhost:4000/plan/${plan_id}`,plan_password)
     .then(function (response) {
         dispatch(deletePlan(plan_id));
         alert("게시글이 삭제되었어요🙂")
@@ -148,13 +152,18 @@ export default handleActions(
           draft.all_list = action.payload.plan_list;
           console.log(draft.list,"after_draft.list");
         //   draft.is_loading = false;
-        }),        
+        }),     
+        [SET_PLAN] : (state, action) =>
+        produce(state, (draft)=>{
+          draft.plan = action.payload.plan_list;
+          console.log(draft.plan);
+        })   ,
 
       [ADD_PLAN]: (state, action) =>
         produce(state, (draft) => {
-          draft.all_list.unshift(action.payload.plan);
+          // draft.all_list.unshift(action.payload.plan);
           draft.today_list.unshift(action.payload.plan);
-          draft.past_list.unshift(action.payload.plan); //가짜 서버 테스트 용
+          // draft.past_list.unshift(action.payload.plan); //가짜 서버 테스트 용
 
       }),
       [EDIT_PLAN]: (state, action) =>
@@ -200,10 +209,12 @@ export default handleActions(
 
 
 const actionCreators = {
-    getPlansServer,
+  getPlansSV,
+ 
     addPlanServer,
     editPlanServer,
     deletePlanServer,
+    getOnePlanSV,
 };
   
 export { actionCreators };

@@ -3,10 +3,13 @@ import { createStore, combineReducers, applyMiddleware, compose } from "redux";
 import { createBrowserHistory } from "history";
 import { connectRouter } from "connected-react-router";
 import plan from "./modules/plan";
+import reply from "./modules/reply"
+
 export const history = createBrowserHistory();
 
 const rootReducer = combineReducers({
     plan: plan,
+    reply: reply,
     router: connectRouter(history)
 })
 

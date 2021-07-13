@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import {history} from "../redux/configStore";
 
-import {actionCreators} from "../redux/modules/plan";
+import {actionCreators as planActions} from "../redux/modules/plan";
 
 import {Button, Grid, Input, Text} from "../elements";
 import Header from '../components/Header';
@@ -26,7 +26,7 @@ const PlanWrite = (props) => {
   const dispatch = useDispatch();
 
   const addPlan = () => {
-    dispatch(actionCreators.addPlanServer(plan));
+    dispatch(planActions.addPlanServer(plan));
     console.log(plan,"작성한 플랜");
     history.replace("/");
   }

@@ -43,6 +43,9 @@ const Btn = styled.button`
   font-weight: bold;
   text-align: center;
   cursor: pointer;
+  &:hover {
+      background-color: red;
+  }
   ${(props) => (props.bgcolor ? `background-color: ${props.bgcolor};` : "")}
   ${(props) => (props.fontcolor ? `color: ${props.fontcolor};` : "")}
 

@@ -1,0 +1,39 @@
+{
+    "plan" : [
+        
+        { "planId" : 2,
+            "title" : "목표의 제목",
+            "writer" : "작성자2",
+            "content" : "목표의 내용",
+            "planPassword": "1234",
+            "createdAt" : "2021-07-09T17:35:00",
+            "modifiedAt" : "2021-07-09T17:35:00",
+            "countReply": 3
+         }
+        
+          
+    ],
+
+    "todayplan" :[
+
+        { "planId" : 4,
+            "title" : "목표의 제목",
+            "writer" : "작성자4",
+            "content" : "목표의 내용",
+            "planPassword": "1234",
+            "createdAt" : "2021-07-09T17:35:00",
+            "modifiedAt" : "2021-07-09T17:35:00",
+            "countReply": 3
+         },
+         { 
+            "planId" : 3,
+            "title" : "목표의 제목",
+            "writer" : "작성자3",
+            "content" : "목표의 내용",
+            "planPassword": "1234",
+            "createdAt" : "2021-07-09T16:35:00",
+            "modifiedAt" : "2021-07-09T16:35:00",
+            "countReply": 4
+         }
+    ]
+}

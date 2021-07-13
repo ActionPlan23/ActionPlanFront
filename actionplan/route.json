@@ -1,0 +1,8 @@
+{
+    "/api/plan" :"/plan",
+    "/api/todayplan":"/todayplan",
+    "/api/pastplan":"/pastplan",
+    "/api/plan/1" : "/planDetail"
+    
+    
+}

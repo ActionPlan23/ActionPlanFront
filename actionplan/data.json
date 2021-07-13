@@ -1,25 +1,138 @@
 {
-  "plans": [
+  "plan": [
     {
-      "title": "fsdfsdf",
-      "writer": "fsdfsdf",
-      "content": "sdfsdf",
-      "planPassword": "sdfsdfsd",
-      "id": 13
-    },
+      "planId":1,
+      "title": "목표의 제목",
+      "writer": "작성자1",
+      "content" : "목표의 내용",
+      "createdAt": "2021-07-09T16:35:00",
+      "modifiedAt": "2021-07-09T16:35:00",
+      "reply_list" :
+      [{
+        "replyId": 1,
+        "replyContent": "댓글내용",
+        "replyWriter": "댓글 작성자",
+        "createdAt": "2021-07-09T 17:29:00",
+        "modifiedAt": "2021-07-09T 17:29:00"
+      },
+      {
+        "replyId": 2,
+        "replyContent": "댓글내용2",
+        "replyWriter": "댓글 작성자2",
+        "createdAt": "2021-07-09T 17:29:00",
+        "modifiedAt": "2021-07-09T 17:29:00"
+      }]
+    }, 
+    { "planId" : 5,
+      "title" : "오늘임",
+      "writer" : "오늘의 나",
+    "content" : "목표의 내용",
+      "planPassword": "1234",
+      "createdAt" : "2021-07-09T17:35:00",
+      "modifiedAt" : "2021-07-09T17:35:00",
+      "countReply": 3
+   },
+   { 
+      "planId" : 6,
+      "title" : "오늘임",
+      "writer" : "오늘의 나",
+      "content" : "목표의 내용",
+      "planPassword": "1234",
+      "createdAt" : "2021-07-09T16:35:00",
+      "modifiedAt" : "2021-07-09T16:35:00",
+      "countReply": 4
+   },
+   { "planId" : 3,
+    "title" : "과거임",
+    "writer" : "과거의 이길동",
+    "content" : "목표의 내용",
+    "planPassword": "1234",
+    "createdAt" : "2021-07-08T17:35:00",
+    "modifiedAt" : "2021-07-08T17:35:00",
+    "countReply": 3
+ },
+ { 
+    "planId" : 4,
+    "title" : "과거임",
+    "writer" : "과거의 이현주",
+    "content" : "목표의 내용",
+    "planPassword": "1234",
+    "createdAt" : "2021-07-07T16:35:00",
+    "modifiedAt" : "2021-07-07T16:35:00",
+    "countReply": 4
+ }
+  ],
+ 
+  "todayplan" :[
+    { "planId" : 5,
+      "title" : "오늘임",
+      "writer" : "오늘의 나",
+    "content" : "목표의 내용",
+      "planPassword": "1234",
+      "createdAt" : "2021-07-09T17:35:00",
+      "modifiedAt" : "2021-07-09T17:35:00",
+      "countReply": 3
+   },
+   { 
+      "planId" : 6,
+      "title" : "오늘임",
+      "writer" : "오늘의 나",
+      "content" : "목표의 내용",
+      "planPassword": "1234",
+      "createdAt" : "2021-07-09T16:35:00",
+      "modifiedAt" : "2021-07-09T16:35:00",
+      "countReply": 4
+   }
+  ],
+  
+  "pastplan" :[
+    
+      { "planId" : 3,
+        "title" : "과거임",
+        "writer" : "과거의 이길동",
+        "content" : "목표의 내용",
+        "planPassword": "1234",
+        "createdAt" : "2021-07-08T17:35:00",
+        "modifiedAt" : "2021-07-08T17:35:00",
+        "countReply": 3
+     },
+     { 
+        "planId" : 4,
+        "title" : "과거임",
+        "writer" : "과거의 이현주",
+        "content" : "목표의 내용",
+        "planPassword": "1234",
+        "createdAt" : "2021-07-07T16:35:00",
+        "modifiedAt" : "2021-07-07T16:35:00",
+        "countReply": 4
+     }
+    
+  ],
+  "planDetail" :[
     {
-      "title": "fsdfsdf",
-      "writer": "sdfsdf",
-      "content": "sdfsdfsd",
-      "planPassword": "sdfsdfsdf",
-      "id": 14
-    },
-    {
-      "title": "sfsdfsdf",
-      "writer": "sdfsdf",
-      "content": "sdfsdf",
-      "planPassword": "sdfsdfsd",
-      "id": 16
+      "planId":1,
+      "title": "목표의 제목",
+      "writer": "작성자1",
+      "content" : "목표의 내용",
+      "createdAt": "2021-07-09T16:35:00",
+      "modifiedAt": "2021-07-09T16:35:00",
+      "reply_list" :
+      [{
+        "replyId": 1,
+        "replyContent": "댓글내용",
+        "replyWriter": "댓글 작성자",
+        "createdAt": "2021-07-09T 17:29:00",
+        "modifiedAt": "2021-07-09T 17:29:00"
+      },
+      {
+        "replyId": 2,
+        "replyContent": "댓글내용2",
+        "replyWriter": "댓글 작성자2",
+        "createdAt": "2021-07-09T 17:29:00",
+        "modifiedAt": "2021-07-09T 17:29:00"
+      }]
     }
   ]
+  
+
 }
