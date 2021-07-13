@@ -2,7 +2,7 @@ import React from 'react';
 import styled from "styled-components";
 
 const Grid = (props) => {
-    const { shadow, border_radius, left, position, is_flex, curser, layout, children, padding, margin, border, width, height, display, alignit, justify, flexdir, textalign, bgcolor, _onClick } = props;
+    const { max_width,transition,hovertransition,hovershadow, hovercolor,shadow, border_radius, left, position, is_flex, curser, layout, children, padding, margin, border, width, height, display, alignit, justify, flexdir, textalign, bgcolor, _onClick } = props;
     const styles = {
         padding: padding,
         margin: margin,
@@ -22,6 +22,11 @@ const Grid = (props) => {
         left: left,
         border_radius: border_radius,
         shadow:shadow,
+        hovercolor:hovercolor,
+        hovershadow:hovershadow,
+        hovertransition:hovertransition,
+        transition:transition,
+        max_width:max_width
     }
     return (
         <React.Fragment>
@@ -53,10 +58,16 @@ Grid.defaultProps = {
     left: false,
     border_radius : false,
     shadow: false,
+    hovercolor: "",
+    hovershadow:"",
+    hovertransition:"",
+    transition:"",
+    max_width: ""
 }
 const GridBox = styled.div`
     width: ${(props)=>props.width};
     box-sizing: border-box;
+    max-width: ${(props)=>props.max_width};
     ${(props) => (props.padding ? `padding: ${props.padding};` : "")}
     ${(props) => (props.margin ? `margin: ${props.margin};` : "")}
     ${(props) => (props.border ? `border: ${props.border};` : "")}
@@ -66,14 +77,19 @@ const GridBox = styled.div`
     ${(props) => (props.justify ? `justify-content: ${props.justify};` : "")}
     ${(props) => (props.flexdir ? `flex-direction: ${props.flexdir};` : "")}
     ${(props) => (props.textalign ? `text-align: ${props.textalign};` : "")}
-    ${(props) => (props.bgcolor ? `background-color: ${props.bgcolor};` : "")}
+    ${(props) => (props.bgcolor ? `background: ${props.bgcolor};` : "")}
     ${(props) => (props.curser ? `cursor: pointer;` : "")}
     ${(props) => (props.is_flex ? `display: flex; justify-content: space-between; align-items: center; ` : "")}
     ${(props) => (props.position ? `position: ${props.position};` : "")}
     ${(props) => (props.left ? `left: ${props.left};` : "")}
     ${(props) => (props.border_radius ? `border-radius: ${props.border_radius};` : "")}
     ${(props) => (props.shadow ? `box-shadow: ${props.shadow};` : "")}
-
+    transition: ${(props)=> props.transition};
+    &:hover{
+        background-color: ${(props)=>props.hovercolor};
+        box-shadow: ${(props)=> props.hovershadow};
+        transform:  ${(props)=> props.hovertransition};
+    }
 `;
 
 export default Grid;

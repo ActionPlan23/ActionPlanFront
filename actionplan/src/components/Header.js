@@ -17,10 +17,14 @@ const Header = (props) => {
         );
     }
     return (
-        <Grid height="200px"padding="0 15px" display="flex" alignit="center" justify="space-between">
+        <Grid 
+        height="350px" display="flex" 
+
+        >
             <Grid display="flex" alignit="center" flexdir="column">
                 <Text color="black" fontsize="40px">오늘의 목표</Text>
-                <Text padding="0" margin="0">{today}</Text>
+                <Text color="black" fontsize="25px">오늘의 목표를 적고 사람들과 공유하세요!</Text>
+                <Text padding="0" margin="0" fontsize="25px">{today}</Text>
             </Grid>
         </Grid>
     );

@@ -20,11 +20,12 @@ const setAllPlan = createAction(SET_ALL_PLAN, (plan_list) => ({ plan_list }));
 
 const setPlan = createAction(SET_PLAN, (plan_list)=>({plan_list}));
 const addPlan = createAction(ADD_PLAN, (plan) => ({ plan }));
-const editPlan = createAction(EDIT_PLAN, (plan_id, plan) => ({
+const editPlan = createAction(EDIT_PLAN, (plan_id, plan, password) => ({
   plan_id,
   plan,
+  password
 }));
-const deletePlan = createAction(DELETE_PLAN, (plan_id, plan_password) => ({ plan_id, plan_password }));
+const deletePlan = createAction(DELETE_PLAN, (plan_id, password) => ({ plan_id, password }));
 
 const loading = createAction(LOADING, (is_loading) => ({ is_loading }));
 
@@ -43,7 +44,7 @@ const initialState = {
 const getPlansSV = () => {
     return function(dispatch){
       //오늘 목표 불러오기
-      instance.get('/plan')
+      instance.get('/todayplan')
         .then(function (response) {
             dispatch(setTodayPlan(response.data));
         })
@@ -59,6 +60,15 @@ const getPlansSV = () => {
             console.log(error);
         })
 
+            //전체 목표 불러오기
+            instance.get('/plan')
+            .then(function (response) {
+                dispatch(setAllPlan(response.data));
+            })
+            .catch(function (error) {
+                console.log(error);
+            })
+
     }
 }
 
@@ -66,7 +76,7 @@ const getPlansSV = () => {
 const getOnePlanSV = (id) => {
   console.log("getOnePlanSV 실행")
   return function(dispatch, getState, {history}){
-    instance.get('plan/'+id)
+    instance.get('/plan/'+id)
     .then(res=> {
       console.log(res.data);
       dispatch(setPlan(res.data));
@@ -75,34 +85,45 @@ const getOnePlanSV = (id) => {
     
 };
 
-
-// 문제?
-const addPlanServer = (plan={}) => {
+//추가하기
+const addPlanServer = (new_plan) => {
   return function (dispatch, getState, { history }) {
-    instance.post('plan',plan)
-    .then(function (response) {    
-      dispatch(addPlan(plan));
-      window.alert("게시글 추가 완료!");
-      history.replace("/");
+    console.log(new_plan);
+    instance.post('/plan',{
+      writer : new_plan.writer,
+      title: new_plan.title,
+      content: new_plan.content,
+      planPassword: new_plan.planPassword,
+
     })
-    .catch((err) => {
-      window.alert("앗! 포스트 작성에 문제가 있어요!");
-      console.log("post 작성에 실패했어요!", err);
-    });
+    .then((res)=>{
+      console.log(res);
+      dispatch(addPlan(new_plan));
+      history.push("/");
+    })
+    .catch((err)=>{
+      console.log(err);
+    })
     };
   };
   
-
-  const editPlanServer = (plan_id = null, plan = {}) => {
+// 게시글 수정
+  const editPlanServer = (plan_id, new_plan, password) => {
     return function (dispatch, getState, { history }) {
       if (!plan_id) {
         console.log("게시물 정보가 없어요!");
         return;
       }
   
-      instance.put(`plan/${plan_id}`,plan)
+      instance.put(`plan/${plan_id}`,{
+        title: new_plan.title,
+        content: new_plan.content,
+        planPassword: new_plan.planPassword
+      }, {
+        password
+      })
       .then(function (response) {
-          dispatch(editPlan(plan_id, plan));
+          dispatch(editPlan(plan_id, new_plan));
           window.alert("게시글 수정 완료!");
           history.push("/");
       })
@@ -113,24 +134,30 @@ const addPlanServer = (plan={}) => {
 }};
 
 
-const deletePlanServer = (plan_id = null, plan_password={}) => {
+const deletePlanServer = (plan_id, password) => {
   return function (dispatch, getState, { history }) {
     if (!plan_id) {
       alert("게시글 정보가 없어요!");
       return;
     }
 
-    instance.delete(`plan/${plan_id}`,plan_password)
-    .then(function (response) {
-        dispatch(deletePlan(plan_id));
-        alert("게시글이 삭제되었어요🙂")
-        history.replace("/");
+    instance.delete(`/plan/${plan_id}`,{
+    
+      data:{
+        password
+      }
     })
-    .catch(function (error) {
-        console.log(error);
-        alert("게시글 삭제 오류입니다");
+    .then((res)=>{
+      console.log(res);
+      window.alert("삭제 했습니다!")
+      dispatch(deletePlan(plan_id, password));
+     
     })
-
+    .catch((err)=>{
+     window.alert("비밀번호가 다릅니다!")
+      console.log(err)
+    });
+  
   } 
 }
 
@@ -163,26 +190,14 @@ export default handleActions(
 
       [ADD_PLAN]: (state, action) =>
         produce(state, (draft) => {
-          // draft.all_list.unshift(action.payload.plan);
+          draft.all_list.unshift(action.payload.plan);
           draft.today_list.unshift(action.payload.plan);
-          // draft.past_list.unshift(action.payload.plan); //가짜 서버 테스트 용
 
       }),
       [EDIT_PLAN]: (state, action) =>
         produce(state, (draft) => {
           let all_idx = draft.all_list.findIndex((p) => p.id === action.payload.plan_id);
           draft.all_list[all_idx] = { ...draft.all_list[all_idx], ...action.payload.plan };
-
-          let past_idx = draft.past_list.findIndex((p) => p.id === action.payload.plan_id);
-          if (past_idx){
-          draft.past_list[past_idx] = { ...draft.past_list[past_idx], ...action.payload.plan };
-          }
-
-          let today_idx = draft.today_list.findIndex((p) => p.id === action.payload.plan_id);
-          if (today_idx){
-          draft.today_list[today_idx] = { ...draft.today_list[today_idx], ...action.payload.plan };
-          } 
-          
         }),
   
       [DELETE_PLAN]: (state, action) =>
@@ -190,11 +205,7 @@ export default handleActions(
           const all_idx = draft.all_list.findIndex((p) => p.id === action.payload.plan_id);
           if (all_idx > -1) draft.all_list.splice(all_idx,1);
 
-          const past_idx = draft.past_list.findIndex((p) => p.id === action.payload.plan_id);
-          if (past_idx > -1) draft.past_list.splice(past_idx,1);
-
-          const today_idx = draft.today_list.findIndex((p) => p.id === action.payload.plan_id);
-          if (today_idx > -1) draft.today_list.splice(today_idx,1);
+          console.log("delete")
       }),
       
     //   [LOADING]: (state, action) => produce(state, (draft) => {

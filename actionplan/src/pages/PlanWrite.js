@@ -28,13 +28,12 @@ const PlanWrite = (props) => {
   const addPlan = () => {
     dispatch(planActions.addPlanServer(plan));
     console.log(plan,"작성한 플랜");
-    history.replace("/");
   }
     const plan = {
-    "title" : title,
-    "writer" : writer,
-    "content" : content,
-    "planPassword": password,
+    title : title,
+    writer: writer,
+    content : content,
+    planPassword: password,
   }
 
     return (
@@ -46,67 +45,81 @@ const PlanWrite = (props) => {
   </Grid>
   {click? (<Input>비밀번호를 입력하세요. </Input>) : } */}
 
-      <Header write></Header>
-        <Grid padding="16px" display="flex">
-          <Grid display="flex" flexdir="column">
+        <Grid 
+        padding="30px 40px"
+        margin="0 auto" 
+        width="600px" 
+        height="800px" 
+        bgcolor="white"
+        border_radius="30px"
+        shadow="rgba(0, 0, 0, 0.25) 0px 25px 50px -12px"
+        >
+        
+          <Grid flexdir="column" margin="0px 0px 30px 0px">
             <Input placeholder="제목을 입력하세요."
                 height="200px"
                 _onChange={(e)=>{
                   setTitle(e.target.value);
               }}
                 value={title}>
-                <Text fontsize="25px" fontweight="bold">
+                <Text fontsize="15px" fontweight="bold">
                     제목
                 </Text>
             </Input>
           </Grid>
-          <Grid display="flex" flexdir="column">
+
+          <Grid flexdir="column" margin="0px 0px 30px 0px">
             <Input placeholder="작성자를 입력하세요."
                 height="200px"
                 _onChange={(e)=>{
                   setWriter(e.target.value);
               }}
                 value={writer}>
-                <Text fontsize="25px" fontweight="bold">
+                <Text fontsize="15px" fontweight="bold">
                     작성자
                 </Text>
             </Input>
-          </Grid>
-        </Grid>      
-        <Grid padding="16px">
+            </Grid>
+
+            <Grid margin="0px 0px 30px 0px">
             <Input placeholder="내용을 입력하세요."
                 textarea height="200px"
                 _onChange={(e)=>{
                   setContent(e.target.value);
               }}
                 value={content}>
-                <Text fontsize="25px" fontweight="bold">
+                <Text fontsize="15px" fontweight="bold">
                     내용
                 </Text>
             </Input>
-        </Grid>
+            </Grid>
 
-        <Grid padding="16px">
+            <Grid margin="0px 0px 30px 0px">
             <Input placeholder="비밀번호를 입력하세요."
               _onChange={(e)=>{
                 setPassword(e.target.value);
             }}
-              value={password}>
-                <Text fontsize="25px" fontweight="bold">
+              value={password}
+              type="password">
+                <Text fontsize="15px" fontweight="bold">
                     비밀번호
                 </Text>
             </Input>
+            </Grid>
+            <Grid>
+
+            <Grid padding="16px" display="flex" flexdir="row" justify="center">
+            <Button width="100px" _onClick={addPlan}
+              shadow="rgba(136, 165, 191, 0.48) 6px 2px 16px 0px, rgba(255, 255, 255, 0.8) -6px -2px 16px 0px"
+              hovershadow="rgb(204, 219, 232) 3px 3px 6px 0px inset, rgba(255, 255, 255, 0.5) -3px -3px 6px 1px inset"
+              
+            >저장</Button>
         </Grid>
+          </Grid>
 
-        <Grid padding="16px" display="flex" flexdir="row" justify="center">
-            <Button width="100px" _onClick={addPlan}>저장</Button>
-        </Grid>
-
-
-
-
-
-
+        
+      
+        </Grid>   
 
       </React.Fragment>
     );

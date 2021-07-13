@@ -16,7 +16,11 @@ const Plan = (props) => {
     return (
         <React.Fragment>
             <Grid 
-           shadow=" rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px"
+            // shadow= "rgba(50, 50, 105, 0.15) 0px 2px 5px 0px, rgba(0, 0, 0, 0.05) 0px 1px 1px 0px"
+           transition="all ease 0.5s"
+           hovertransition=" scale( 1.05, 1.05 )"
+            hovercolor="#D1DEF1"
+            hovershadow="rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px"
            border_radius="20px"
            bgcolor="white"
             margin="25px" 

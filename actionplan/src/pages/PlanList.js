@@ -26,15 +26,25 @@ const PlanList = () => {
 
     return (
         <React.Fragment>
-            <Grid margin="80px 0px">
+            <Grid>
             <Grid width="150px" display="flex" margin="0 auto" >
-                <Button margin="0 13px 0 0" _onClick={getToday} >Today</Button>
-                <Button margin="0 13px 0 0" _onClick={getPast} >Past</Button>
+                <Button 
+                    margin="0 13px 0 0" _onClick={getToday}
+                    shadow="rgba(136, 165, 191, 0.48) 6px 2px 16px 0px, rgba(255, 255, 255, 0.8) -6px -2px 16px 0px"
+                    hovershadow="rgb(204, 219, 232) 3px 3px 6px 0px inset, rgba(255, 255, 255, 0.5) -3px -3px 6px 1px inset"
+
+                    >Today</Button>
+                    
+               <Button margin="0 13px 0 0" _onClick={getPast} 
+                  shadow="rgba(136, 165, 191, 0.48) 6px 2px 16px 0px, rgba(255, 255, 255, 0.8) -6px -2px 16px 0px"
+                  hovershadow="rgb(204, 219, 232) 3px 3px 6px 0px inset, rgba(255, 255, 255, 0.5) -3px -3px 6px 1px inset"
+                  
+               >Past</Button>
               
             </Grid>
             </Grid>
          
-            <Grid padding="10px 130px" display="flex">
+            <div style={{justifyContent:"center",margin:"0 auto",maxWidth:"900px",display:"grid", gridTemplateColumns:"repeat(3,1fr)"}} >
             {list==="" ? 
                 today_list.map((p, idx)=>{
                   return (
@@ -45,10 +55,7 @@ const PlanList = () => {
                   return (<Plan {...p}></Plan>)
               })
             }
-            </Grid>
-            <Button _onClick={
-                ()=>{history.push("/write")}
-            }>추가하기</Button>
+            </div>
         </React.Fragment>
     )
 };
