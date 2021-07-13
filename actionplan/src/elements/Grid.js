@@ -2,7 +2,7 @@ import React from 'react';
 import styled from "styled-components";
 
 const Grid = (props) => {
-    const { left, position, is_flex, curser, layout, children, padding, margin, border, width, height, display, alignit, justify, flexdir, textalign, bgcolor, _onClick } = props;
+    const { shadow, border_radius, left, position, is_flex, curser, layout, children, padding, margin, border, width, height, display, alignit, justify, flexdir, textalign, bgcolor, _onClick } = props;
     const styles = {
         padding: padding,
         margin: margin,
@@ -20,6 +20,8 @@ const Grid = (props) => {
         is_flex: is_flex,
         position: position,
         left: left,
+        border_radius: border_radius,
+        shadow:shadow,
     }
     return (
         <React.Fragment>
@@ -49,6 +51,8 @@ Grid.defaultProps = {
     is_flex: false, 
     position: false,
     left: false,
+    border_radius : false,
+    shadow: false,
 }
 const GridBox = styled.div`
     width: ${(props)=>props.width};
@@ -67,8 +71,8 @@ const GridBox = styled.div`
     ${(props) => (props.is_flex ? `display: flex; justify-content: space-between; align-items: center; ` : "")}
     ${(props) => (props.position ? `position: ${props.position};` : "")}
     ${(props) => (props.left ? `left: ${props.left};` : "")}
-
-
+    ${(props) => (props.border_radius ? `border-radius: ${props.border_radius};` : "")}
+    ${(props) => (props.shadow ? `box-shadow: ${props.shadow};` : "")}
 
 `;
 

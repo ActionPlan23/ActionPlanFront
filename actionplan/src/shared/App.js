@@ -5,6 +5,7 @@ import {history} from "../redux/configStore";
 import { useDispatch, } from 'react-redux';
 import {actionCreators as planActions} from "../redux/modules/plan";
 import {Grid} from "../elements";
+import Header from '../components/Header';
 import PlanList from '../pages/PlanList';
 import PlanWrite from '../pages/PlanWrite';
 import CommentsPage from '../pages/CommentsPage';
@@ -19,7 +20,8 @@ function App() {
   return (
     <React.Fragment>
       <ConnectedRouter history={history}>
-        <Grid padding="0 0 0 0">
+        <Grid padding="0 0 0 0" bgcolor="#F1F2F6">
+          <Header></Header>
           <Route path="/" exact component={PlanList} />
           <Route path="/write" exact component={PlanWrite} />
           {/* <Route path="/comments/:id" exact component={CommentsPage} />/ */}

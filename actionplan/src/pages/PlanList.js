@@ -26,16 +26,20 @@ const PlanList = () => {
 
     return (
         <React.Fragment>
-            <Header></Header>
-            <Grid width="150px" display="flex" justify="start">
-                <Button margin="0 13px 0 0" _onClick={getToday} >오늘</Button>
-                <Button margin="0 13px 0 0" _onClick={getPast} >과거</Button>
+            <Grid margin="80px 0px">
+            <Grid width="150px" display="flex" margin="0 auto" >
+                <Button margin="0 13px 0 0" _onClick={getToday} >Today</Button>
+                <Button margin="0 13px 0 0" _onClick={getPast} >Past</Button>
               
             </Grid>
-            <Grid padding="10px 30px">
+            </Grid>
+         
+            <Grid padding="10px 130px" display="flex">
             {list==="" ? 
                 today_list.map((p, idx)=>{
-                  return (<Plan key={p.planId} {...p}></Plan>)
+                  return (
+                  <Plan key={p.planId} {...p}>
+                  </Plan>)
               }) : 
                 list.map((p, idx)=>{
                   return (<Plan {...p}></Plan>)
