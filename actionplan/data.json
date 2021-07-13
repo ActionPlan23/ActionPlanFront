@@ -1,43 +1,43 @@
 {
-  "plans": [
-    {
-      "title": "수정 제목",
-      "content": "수정 내용",
-      "planPassword": 1234,
-      "id": 13
-    },
-    {
-      "title": "수정 제목",
-      "content": "수정 내용",
-      "planPassword": 1234,
-      "id": 14
-    },
-    {
-      "title": "수정 제목",
-      "content": "수정 내용",
-      "planPassword": 1234,
-      "id": 16
-    },
-    {
-      "title": "sdfsd",
-      "writer": "fsdfsd",
-      "content": "fsdfsdf",
-      "planPassword": "sdfsdf",
-      "id": 17
-    },
-    {
-      "title": "패스워드",
-      "writer": "입력창을",
-      "content": "띄워보겠습니다.",
-      "planPassword": "요요요",
-      "id": 18
-    },
-    {
-      "title": "aaaa",
-      "writer": "aaa",
-      "content": "aaaa",
-      "planPassword": "aaaaa",
-      "id": 19
-    }
-  ]
-}
+    "plan":
+    [
+      {
+        "title": "수정 제목",
+        "content": "수정 내용",
+        "id": 13
+      },
+      {
+        "title": "수정 제목",
+        "content": "수정 내용",
+        "id": 14
+      }
+    ],
+    "todayplan":
+      [
+        {
+          "title": "수정 제목",
+          "content": "수정 내용",
+          "id": 13
+        },
+        {
+          "title": "수정 제목",
+          "content": "수정 내용",
+          "id": 14
+        }
+    ],
+    "pastplan":
+     [
+      {
+        "title": "수정 제목",
+        "content": "수정 내용",
+        "id": 13
+      },
+      {
+        "title": "수정 제목",
+        "content": "수정 내용",
+        "planPassword": 1234,
+        "id": 14
+      }
+    ]
+
+  }

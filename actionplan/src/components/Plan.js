@@ -44,18 +44,28 @@ const Plan = (props) => {
             <Button _onClick={deletePlan}>삭제하기 테스트</Button> */}
             
 
-
+            <Button _onClick={()=>setShowWindow(true)}>테스트</Button>
+            {showWindow? 
+            (
+                <Grid width="200px" position="fixed" top="30%" left="30%">
+                <Input _onChange={(e)=>setPassword(e.target.value)} value={password} placeholder="비밀번호를 입력하세요.">비밀번호</Input>
+                <Button _onClick={() => setShowWindow(false)}>테스트 닫기</Button>
+                <Button _onClick={editPlan}>테스트 확인</Button>
+                </Grid>
+            ) :
+            ""
+        }
 
             {/* 게시글 수정하기 버튼 */}
-            <Button _onClick={() => setShowWindow(true)}>수정하기</Button>
+            {/* <Button _onClick={() => setShowWindow(true)}>수정하기</Button> */}
             {/* 비밀번호 입력 창 띄우기 */}
-            <EnterPassword showWindow={showWindow}>
+            {/* <EnterPassword showWindow={showWindow}>
                 <Grid width="200px" position="fixed" top="30%" left="30%">
                     <Input _onChange={(e)=>setPassword(e.target.value)} value={password} placeholder="비밀번호를 입력하세요.">비밀번호</Input>
                     <Button _onClick={() => setShowWindow(false)}>닫기</Button>
                     <Button _onClick={editPlan}>확인</Button>
                 </Grid>
-            </EnterPassword>
+            </EnterPassword> */}
 
 
 

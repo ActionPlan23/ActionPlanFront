@@ -40,8 +40,9 @@ const initialPlan = {
 const getPlansServer = () => {
     return function(dispatch){
       //오늘 목표 불러오기
-        axios.get('http://localhost:4000/plans')
+        axios.get('http://localhost:4000/todayplan')
         .then(function (response) {
+          console.log(response.data,"response.data")
             dispatch(setTodayPlan(response.data));
         })
         .catch(function (error) {
@@ -49,7 +50,7 @@ const getPlansServer = () => {
         })
 
         //과거 목표 불러오기
-        axios.get('http://localhost:4000/plans')
+        axios.get('http://localhost:4000/pastplan')
         .then(function (response) {
             dispatch(setPastPlan(response.data));
         })
@@ -58,7 +59,7 @@ const getPlansServer = () => {
         })
 
         //전체 목표 불러오기
-        axios.get('http://localhost:4000/plans')
+        axios.get('http://localhost:4000/plan')
         .then(function (response) {
             console.log(response,"response");
             console.log(response.data,"response.data");
@@ -73,7 +74,7 @@ const getPlansServer = () => {
 
 const addPlanServer = (plan={}) => {
   return function (dispatch, getState, { history }) {
-    axios.post('http://localhost:4000/plans',plan)
+    axios.post('http://localhost:4000/plan',plan)
     .then(function (response) {    
       dispatch(addPlan(plan));
       window.alert("게시글 추가 완료!");
@@ -94,7 +95,7 @@ const addPlanServer = (plan={}) => {
         return;
       }
   
-      axios.put(`http://localhost:4000/plans/${plan_id}`,plan)
+      axios.put(`http://localhost:4000/plan/${plan_id}`,plan)
       .then(function (response) {
           dispatch(editPlan(plan_id, plan));
           window.alert("게시글 수정 완료!");
@@ -114,7 +115,7 @@ const deletePlanServer = (plan_id = null, plan_password={}) => {
       return;
     }
 
-    axios.delete(`http://localhost:4000/plans/${plan_id}`,plan_password)
+    axios.delete(`http://localhost:4000/plan/${plan_id}`,plan_password)
     .then(function (response) {
         dispatch(deletePlan(plan_id));
         alert("게시글이 삭제되었어요🙂")
