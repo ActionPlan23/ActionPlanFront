@@ -35,7 +35,6 @@ const CommentsPage = (props) =>{
 
     React.useEffect(()=>{
         dispatch(planActions.getOnePlanSV(plan_id));
-        dispatch(replyActions.getReplySV(plan_id));
         console.log(plan);
     },[]);
     return(
@@ -90,6 +89,7 @@ const CommentsPage = (props) =>{
                                 _onClick={()=>{
                                     addComment();
                                     setPopup(false);
+                                    setComment("")
                                 }} >확인</Button>
                         </Grid>
                         </PasswordPop>}

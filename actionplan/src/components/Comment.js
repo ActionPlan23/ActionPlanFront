@@ -94,7 +94,7 @@ const Comment = (props) =>{
                          <Button
                          _onClick={()=>{
                             editReply()
-                            setDelPopup(false)
+                            setEditPopup(false)
                          }} >확인</Button>
                  </Grid>
                 </EditPopup>

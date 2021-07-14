@@ -25,7 +25,6 @@ const getReplySV = (id)=>{
         //게시물 댓글 불러오기
         instance.get('/plan/'+id)
           .then(res=> {
-            console.log(res)
             dispatch(getReply(res.data));
           })
   
@@ -44,8 +43,9 @@ const addReplySV = (new_reply, id )=>{
 
           })
           .then(res=> {
+            console.log(res.data)
               window.alert("댓글 작성 성공")
-            dispatch(addReply(new_reply));
+            dispatch(addReply({...new_reply, replyId: res.data.replyId}));
             // window.location.replace("/comments/"+id)
             
           })
@@ -116,27 +116,24 @@ export default handleActions(
         }),
         [ADD_REPLY] :(state, action) => 
         produce(state,(draft)=>{
-          if(draft.reply_list.length>0){
-            console.log(action.payload.reply);
-            draft.reply_list.unshift(action.payload.reply);
-          }
-          draft.reply_list = action.payload.reply;
-          console.log(action.payload.reply);
+          // if(draft.reply_list.length>0){
+          //   console.log(action.payload.reply);
+          //   draft.reply_list.unshift(action.payload.reply);
+          // }
+          draft.reply_list.replyList.unshift(action.payload.reply);
         }),
         [EDIT_REPLY]: (state, action) =>
         produce(state, (draft) => {
-          let reply_idx = draft.reply_list.findIndex((p) => p.id === action.payload.reply_id);
-          draft.reply_list[reply_idx] = { ...draft.reply_list[reply_idx], ...action.payload.new_reply };
+          let reply_idx = draft.reply_list.replyList.findIndex((p) => p.replyId === action.payload.reply_id);
+          draft.reply_list.replyList[reply_idx] = { ...draft.reply_list.replyList[reply_idx], ...action.payload.new_reply };
          
         }),
   
         [DELETE_REPLY]: (state, action) =>
         produce(state, (draft) => {
-          // const reply_idx = draft.reply_list.findIndex((p) => p.id === action.payload.reply_id);
-          // if (reply_idx > -1) draft.reply_list.splice(reply_idx,1);
-          draft.reply_list =draft.reply_list.filter((l,idx)=>{
-            return l.id !== action.payload.reply_id;
-          })
+          const reply_idx = draft.reply_list.replyList.findIndex((p) => p.replyId === action.payload.reply_id);
+          if (reply_idx > -1) draft.reply_list.replyList.splice(reply_idx,1);
+        
       }),
  
     },
