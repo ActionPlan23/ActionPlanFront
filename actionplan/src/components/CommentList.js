@@ -8,11 +8,11 @@ const CommentList = (props) =>{
     const dispatch = useDispatch();
     
     const {replyList, planId} = useSelector(state=> state.reply.reply_list);
- 
+
     React.useEffect(()=>{
         replyActions.getReplySV(planId);
         
-    },replyList);
+    },[]);
    
     if(!replyList){
         return <div>로딩중</div>

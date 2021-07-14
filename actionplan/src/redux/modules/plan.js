@@ -115,7 +115,7 @@ const addPlanServer = (new_plan) => {
         return;
       }
   
-      instance.put(`plan/${plan_id}`,{
+      instance.put(`/plan/${plan_id}`,{
         title: new_plan.title,
         content: new_plan.content,
         planPassword: new_plan.planPassword
@@ -133,7 +133,7 @@ const addPlanServer = (new_plan) => {
       })
 }};
 
-
+//게시글 삭제
 const deletePlanServer = (plan_id, password) => {
   return function (dispatch, getState, { history }) {
     if (!plan_id) {

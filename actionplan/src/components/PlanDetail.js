@@ -11,16 +11,13 @@ const PlanDetail = (props) =>{
     const dispatch = useDispatch();
     
     const planId = props.planId;
-    console.log(planId);
+
+
     const deletePlan = ()=>{
         dispatch(planActions.deletePlanServer(planId, password));
         history.push("/")
     }
 
-  
-   
-
-    
     const [deletepopup, handleDelPopup] = React.useState(false);
     const [editpopup, handleEditPopup] = React.useState(false);
     const [password, setPassword] =React.useState("");
@@ -37,7 +34,6 @@ const PlanDetail = (props) =>{
         dispatch(planActions.editPlanServer(planId,new_plan, password ))
     }
 
-    console.log(props.title);
 
    
     return(
