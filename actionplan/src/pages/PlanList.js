@@ -20,9 +20,7 @@ const PlanList = () => {
     const getPast = () => {
         setList(past_list);
     }
-   
-    console.log(today_list,"initial_todaylist")
-    console.log(list,"initail_list")
+
 
     return (
         <React.Fragment>

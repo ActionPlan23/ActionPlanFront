@@ -18,7 +18,7 @@ const CommentsPage = (props) =>{
    const [password , setPassword] = React.useState("");
    const [writer, setWriter] = React.useState("");
 
-    const reply = useSelector((state)=> state.reply.reply_list);
+
    const changeContents = (e) =>{
        setComment(e.target.value);
    }
@@ -60,7 +60,7 @@ const CommentsPage = (props) =>{
                         }}
                         >작성</Button>
                     </Grid>
-                    <CommentList></CommentList>
+                    <CommentList id={plan_id}></CommentList>
                    
                 </Grid>
             </Grid>

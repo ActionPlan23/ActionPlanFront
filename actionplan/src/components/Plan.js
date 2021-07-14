@@ -27,7 +27,10 @@ const Plan = (props) => {
             width="300px" 
             height="400px"
             _onClick={()=>{
-                history.push(`/comments/${props.planId}`);
+               
+                    history.push(`/comments/${props.planId}`);
+                
+              
             }}>
                 <Grid padding="20px">
                     <Grid textalign="center" margin="0px 0px 50px 0px">

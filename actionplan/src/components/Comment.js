@@ -23,7 +23,7 @@ const Comment = (props) =>{
         replyPassword: password
     }
     const editReply = ()=>{
-        dispatch(replyActions.editReplyServer(replyId, new_reply));
+        dispatch(replyActions.editReplyServer(replyId, new_reply, password));
     }
   
 

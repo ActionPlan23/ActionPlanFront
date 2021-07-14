@@ -16,6 +16,7 @@ const PlanDetail = (props) =>{
     const deletePlan = ()=>{
         dispatch(planActions.deletePlanServer(planId, password));
         history.push("/")
+        // history.push("/")
     }
 
     const [deletepopup, handleDelPopup] = React.useState(false);

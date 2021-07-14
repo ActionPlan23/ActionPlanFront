@@ -25,8 +25,7 @@ const getReplySV = (id)=>{
         //게시물 댓글 불러오기
         instance.get('/plan/'+id)
           .then(res=> {
-            console.log(res.data);
-            console.log(res.data);
+            console.log(res)
             dispatch(getReply(res.data));
           })
   
@@ -47,7 +46,8 @@ const addReplySV = (new_reply, id )=>{
           .then(res=> {
               window.alert("댓글 작성 성공")
             dispatch(addReply(new_reply));
-            history.push("/comments/"+id);
+            // window.location.replace("/comments/"+id)
+            
           })
           .catch(err => window.alert("댓글 작성 실팬"))
   
@@ -76,7 +76,7 @@ const deleteReplyServer = (reply_id, password) => {
      
     })
     .catch((err)=>{
-    
+      window.alert("삭제 못했습니다!")
       console.log(err)
     });
   
@@ -84,17 +84,17 @@ const deleteReplyServer = (reply_id, password) => {
 }
 
 // 댓글 수정
-const editReplyServer = (reply_id, new_reply) => {
+const editReplyServer = (reply_id, new_reply, password) => {
   return function (dispatch, getState, { history }) {
     if (!reply_id) {
       console.log("댓글 정보가 없어요!");
       return;
     }
 
-    instance.put(`reply/${reply_id}`,{
+    instance.put(`/reply/${reply_id}`,{
       replyContent: new_reply.replyContent,
       replyPassword: new_reply.replyPassword,
-    })
+    },{password})
     .then(function (response) {
         dispatch(editReply(reply_id, new_reply));
         window.alert("댓글 수정 완료!");
@@ -117,20 +117,26 @@ export default handleActions(
         [ADD_REPLY] :(state, action) => 
         produce(state,(draft)=>{
           if(draft.reply_list.length>0){
+            console.log(action.payload.reply);
             draft.reply_list.unshift(action.payload.reply);
           }
           draft.reply_list = action.payload.reply;
+          console.log(action.payload.reply);
         }),
         [EDIT_REPLY]: (state, action) =>
         produce(state, (draft) => {
           let reply_idx = draft.reply_list.findIndex((p) => p.id === action.payload.reply_id);
           draft.reply_list[reply_idx] = { ...draft.reply_list[reply_idx], ...action.payload.new_reply };
+         
         }),
   
         [DELETE_REPLY]: (state, action) =>
         produce(state, (draft) => {
-          const reply_idx = draft.reply_list.findIndex((p) => p.id === action.payload.reply_id);
-          if (reply_idx > -1) draft.reply_list.splice(reply_idx,1);
+          // const reply_idx = draft.reply_list.findIndex((p) => p.id === action.payload.reply_id);
+          // if (reply_idx > -1) draft.reply_list.splice(reply_idx,1);
+          draft.reply_list =draft.reply_list.filter((l,idx)=>{
+            return l.id !== action.payload.reply_id;
+          })
       }),
  
     },

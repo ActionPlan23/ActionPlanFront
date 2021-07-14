@@ -8,9 +8,9 @@ const CommentList = (props) =>{
     const dispatch = useDispatch();
     
     const {replyList, planId} = useSelector(state=> state.reply.reply_list);
-
+    console.log(props.id)
     React.useEffect(()=>{
-        replyActions.getReplySV(planId);
+        dispatch(replyActions.getReplySV(props.id));
         
     },[]);
    

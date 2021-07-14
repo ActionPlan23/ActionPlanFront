@@ -97,9 +97,11 @@ const addPlanServer = (new_plan) => {
 
     })
     .then((res)=>{
-      console.log(res);
-      dispatch(addPlan(new_plan));
-      history.push("/");
+      console.log(res)
+      console.log("추가", res.data.planId);
+
+      dispatch(addPlan({...new_plan, planId: res.data.planId}));
+    
     })
     .catch((err)=>{
       console.log(err);
@@ -123,6 +125,7 @@ const addPlanServer = (new_plan) => {
         password
       })
       .then(function (response) {
+        console.log("수정", response.data);
           dispatch(editPlan(plan_id, new_plan));
           window.alert("게시글 수정 완료!");
           history.push("/");
@@ -148,7 +151,7 @@ const deletePlanServer = (plan_id, password) => {
       }
     })
     .then((res)=>{
-      console.log(res);
+      console.log("삭제", res.data);
       window.alert("삭제 했습니다!")
       dispatch(deletePlan(plan_id, password));
      
@@ -190,22 +193,28 @@ export default handleActions(
 
       [ADD_PLAN]: (state, action) =>
         produce(state, (draft) => {
+          console.log(draft.all_list)
           draft.all_list.unshift(action.payload.plan);
           draft.today_list.unshift(action.payload.plan);
+          console.log(action.payload.plan);
+          console.log(draft.all_list)
 
       }),
       [EDIT_PLAN]: (state, action) =>
         produce(state, (draft) => {
-          let all_idx = draft.all_list.findIndex((p) => p.id === action.payload.plan_id);
+          let all_idx = draft.all_list.findIndex((p) => p.planId === action.payload.plan_id);
           draft.all_list[all_idx] = { ...draft.all_list[all_idx], ...action.payload.plan };
+          let today_idx = draft.today_list.findIndex((p) => p.planId === action.payload.plan_id);
+          draft.today_list[today_idx] = { ...draft.today_list[today_idx], ...action.payload.plan };
         }),
   
       [DELETE_PLAN]: (state, action) =>
         produce(state, (draft) => {
-          const all_idx = draft.all_list.findIndex((p) => p.id === action.payload.plan_id);
-          if (all_idx > -1) draft.all_list.splice(all_idx,1);
-
-          console.log("delete")
+          const all_idx = state.all_list.findIndex((p) => parseInt(p.planId)  === parseInt(action.payload.plan_id));
+          if (all_idx > -1) {
+            draft.all_list.splice(all_idx,1);}
+          const today_idx = draft.today_list.findIndex((p) => p.planId === action.payload.plan_id);
+          if (today_idx > -1) draft.today_list.splice(today_idx,1);
       }),
       
     //   [LOADING]: (state, action) => produce(state, (draft) => {
