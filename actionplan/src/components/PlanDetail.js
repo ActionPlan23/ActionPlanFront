@@ -98,6 +98,10 @@ const PlanDetail = (props) =>{
                                 _onChange={(e)=>{
                                     setPassword(e.target.value);
                                 }}
+                                onSubmit={()=>{
+                                    deletePlan();
+                                    setPassword("");
+                                }}
                             ></Input>
                                 <Button
                                 _onClick={()=>{
@@ -122,7 +126,7 @@ const PlanDetail = (props) =>{
                                         ></Input>
                                          <Text>내용</Text>
                                         <Input
-                                        
+                                         
                                         value={content}
                                         placeholder="내용을 입력하세요."
                                         _onChange={(e)=>{
@@ -131,6 +135,11 @@ const PlanDetail = (props) =>{
                                         ></Input>
                                      <Text>비밀번호</Text>
                                         <Input
+                                           onSubmit={()=>{
+                                            editPlan()
+                                            setContent("");
+                                            setPassword("");
+                                        }}
                                             type="password"
                                             value={password}
                                             placeholder="비밀번호를 입력하세요."
@@ -156,9 +165,9 @@ const PlanDetail = (props) =>{
 
 PlanDetail.defaultProps={
     planId : 1,
-    title : "defaultprops",
-    writer : "default작성자",
-    content: "defalt목표의 내용",
+    title : "",
+    writer : "",
+    content: "",
     planPassword: "1234",
     createdAt : "2021-07-07T16:35:00",
     modifiedAt : "2021-07-07T16:35:00",

@@ -49,7 +49,7 @@ const addReplySV = (new_reply, id )=>{
             // window.location.replace("/comments/"+id)
             
           })
-          .catch(err => window.alert("댓글 작성 실팬"))
+          .catch(err => window.alert("댓글 작성 실패"))
   
       }
 }
@@ -76,7 +76,7 @@ const deleteReplyServer = (reply_id, password) => {
      
     })
     .catch((err)=>{
-      window.alert("삭제 못했습니다!")
+      window.alert("비밀번호가 다릅니다!")
       console.log(err)
     });
   
@@ -102,7 +102,7 @@ const editReplyServer = (reply_id, new_reply, password) => {
     })
     .catch(function (error) {
         console.log(error);
-        alert("댓글 수정 오류입니다");
+        alert("비밀번호가 다릅니다!");
     })
 }};
 
@@ -116,10 +116,6 @@ export default handleActions(
         }),
         [ADD_REPLY] :(state, action) => 
         produce(state,(draft)=>{
-          // if(draft.reply_list.length>0){
-          //   console.log(action.payload.reply);
-          //   draft.reply_list.unshift(action.payload.reply);
-          // }
           draft.reply_list.replyList.unshift(action.payload.reply);
         }),
         [EDIT_REPLY]: (state, action) =>

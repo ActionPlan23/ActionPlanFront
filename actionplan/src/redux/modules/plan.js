@@ -130,7 +130,7 @@ const addPlanServer = (new_plan) => {
       })
       .catch(function (error) {
           console.log(error);
-          alert("게시글 수정 오류입니다");
+          alert("비밀번호가 다릅니다!");
       })
 }};
 
@@ -204,6 +204,8 @@ export default handleActions(
           draft.all_list[all_idx] = { ...draft.all_list[all_idx], ...action.payload.plan };
           let today_idx = draft.today_list.findIndex((p) => p.planId === action.payload.plan_id);
           draft.today_list[today_idx] = { ...draft.today_list[today_idx], ...action.payload.plan };
+          let past_idx = draft.past_list.findIndex((p) => p.planId === action.payload.plan_id);
+          draft.past_list[past_idx] = { ...draft.past_list[past_idx], ...action.payload.plan };
         }),
   
       [DELETE_PLAN]: (state, action) =>

@@ -109,10 +109,11 @@ const PlanWrite = (props) => {
             <Grid padding="16px" display="flex" flexdir="row" justify="center">
             <Button width="100px" _onClick={()=>{
               if(   title ==="" || writer===""|| content==="" || password ===""){
-                window.alert("다시확인해라")
+                window.alert("다시확인해주세요!")
+              }else{
+                addPlan()
               }
-              
-              addPlan()
+           
             }}
               shadow="rgba(136, 165, 191, 0.48) 6px 2px 16px 0px, rgba(255, 255, 255, 0.8) -6px -2px 16px 0px"
               hovershadow="rgb(204, 219, 232) 3px 3px 6px 0px inset, rgba(255, 255, 255, 0.5) -3px -3px 6px 1px inset"
