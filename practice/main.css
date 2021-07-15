@@ -1,0 +1,64 @@
+body{
+    background-color: #00a4ffb3;
+}
+.parent_wrapper{
+    height: 250px;
+    width: 250px;
+    position: relative;
+    background-color: white;
+}
+.tab-indicator {
+    position: absolute;
+    background-color: #000000;
+    width: 50px;
+    height: 60px;
+    border-radius: 50px 0 0 50px;
+    z-index: 1;
+    transform: translateY(0px);
+    right: 0px;
+    transition: transform .3s ease-out;
+}
+.tab-indicator .tab-indicator-left, .tab-indicator .tab-indicator-right {
+    background-color: #000000;
+    height: 25px;
+    width: 25px;
+    position: absolute;
+}
+.tab-indicator .tab-indicator-left {
+    right: 0;
+    bottom: -24px;
+}
+.tab-indicator.data-white .tab-indicator-left:after, .tab-indicator.data-white .tab-indicator-right:after {
+    background-color: #F3F3F3;
+}
+.tab-indicator .tab-indicator-left:after {
+    width: 100%;
+    height: 100%;
+    margin-top: 1px;
+}
+.tab-indicator .tab-indicator-left:after, .tab-indicator .tab-indicator-right:after {
+    content: "";
+    display: block;
+    background-color: #F3F3F3;
+}
+.tab-indicator .tab-indicator-left:after {
+    border-radius: 0 25px 0 0;
+}
+.tab-indicator .tab-indicator-left, .tab-indicator .tab-indicator-right {
+    background-color: #000000;
+    height: 25px;
+    width: 25px;
+    position: absolute;
+}
+.tab-indicator .tab-indicator-right {
+    right: 0;
+    top: -24px;
+}
+.tab-indicator .tab-indicator-right:after {
+    width: 100%;
+    height: 100%;
+    margin-top: -1px;
+}
+.tab-indicator .tab-indicator-right:after {
+    border-radius: 0px 0px 25px 0px;
+}	

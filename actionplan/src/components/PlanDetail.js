@@ -45,8 +45,8 @@ const PlanDetail = (props) =>{
                 height="500px" 
                 border_radius="20px"
                 bgcolor="white"
-                 margin="25px" 
-                 width="300px" 
+                 margin="55px" 
+                 max_width="500px" 
                 shadow= "rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px"
                >
                <Grid height="350px" textalign="center" >

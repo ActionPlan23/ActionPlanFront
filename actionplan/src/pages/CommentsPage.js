@@ -39,16 +39,13 @@ const CommentsPage = (props) =>{
     },[]);
     return(
         <React.Fragment>
-        
-            <Grid is_flex padding="20px px">
-                <Grid margin="0px 100px 0px 0px">
+        <OutterBox>
+            
+            <Grid margin="0 auto"is_flex  max_width="70vw" bgcolor="red">
                     <PlanDetail {...plan}></PlanDetail>
-                  
-                </Grid>
-
                 
-                <Grid height="500px">
-                    <Grid is_flex padding="20px 0px 0px 0px"margin="0px 0px 50px 0px">
+                <Grid width="30vw" padding="0 80px 0 0 ">
+                    <Grid is_flex  margin="0px 0px 30px 0px">
                         <Input placeholder="댓글 달기"
                             _onChange = {changeContents}
                             value={comment}
@@ -93,6 +90,8 @@ const CommentsPage = (props) =>{
                                 }} >확인</Button>
                         </Grid>
                         </PasswordPop>}
+                        
+                        </OutterBox>
         </React.Fragment>
     )
 }
@@ -108,6 +107,16 @@ const PasswordPop = styled.div`
     z-index:100;
     background-color: white;
     border-radius: 20px;
+`;
+const OutterBox = styled.div`
+    background-color: lightpink;
+    border-radius: 50px;
+    max-width: 90vw;
+    margin: 0 auto;
+    padding: 30px;
+    box-sizing: border-box;
+    justify-content: center;
+    
 `;
 
 export default CommentsPage;

@@ -4,6 +4,7 @@ import {history} from "../redux/configStore";
 import CommentOutlinedIcon from '@material-ui/icons/CommentOutlined';
 import { Grid, Text, Button } from '../elements';
 import { actionCreators } from '../redux/modules/plan';
+import moment from 'moment';
 
 const Plan = (props) => {
 
@@ -12,6 +13,8 @@ const Plan = (props) => {
     //가짜 서버 작업을 위한 id임. 나중에 서버 만들어지면 빼야 됨!
     const dispatch = useDispatch();
     const dt = createdAt.substr(0,10);
+    let today = moment().format("YYYY-MM-DD");
+    console.log(today);
 
     return (
         <React.Fragment>
@@ -24,7 +27,7 @@ const Plan = (props) => {
            border_radius="20px"
            bgcolor="white"
             margin="25px" 
-            width="300px" 
+            width="20vw" 
             height="400px"
             _onClick={()=>{
                
@@ -45,7 +48,9 @@ const Plan = (props) => {
                     <Text  fontsize="18px"> {countReply}</Text>
                     </Grid>
                    {/* 과거에는 날짜가 나와야함 */}
-                 
+                 {
+                     (dt !== today)&& <Text>{dt}</Text>
+                 }
                    
                 </Grid>
  

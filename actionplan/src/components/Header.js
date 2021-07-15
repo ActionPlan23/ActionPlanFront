@@ -8,18 +8,11 @@ import moment from "moment";
 const Header = (props) => {
 
     let today =  moment().format("YYYY-MM-DD");
-    if (props.write){
-        return (
-            <Grid position="relative" padding="0 15px" display="flex" alignit="center" justify="center">
-                <Text color="black" fontsize="30px">목표 세우기</Text>
-                <Text></Text>
-            </Grid>
-        );
-    }
+   
     return (
         <Grid 
         height="350px" display="flex" 
-
+       
         >
             <Grid display="flex" alignit="center" flexdir="column">
                 <Text color="black" fontsize="40px">오늘의 목표</Text>

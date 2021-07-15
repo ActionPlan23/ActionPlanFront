@@ -20,7 +20,7 @@ function App() {
   return (
     <React.Fragment>
       <ConnectedRouter history={history}>
-        <Grid bgcolor="#EDEDEF">
+        {/* <Grid bgcolor="black"> */}
           <Header></Header>
           <Route path="/" exact component={PlanList} />
           <Route path="/write" exact component={PlanWrite} />
@@ -28,7 +28,7 @@ function App() {
           <Route path="/comments" exact component={CommentsPage} />
           <Route path="/comments/:id" exact component={CommentsPage} />
           
-        </Grid>
+        {/* </Grid> */}
         <Button
         position
         _onClick={
