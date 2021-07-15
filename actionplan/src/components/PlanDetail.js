@@ -14,9 +14,14 @@ const PlanDetail = (props) =>{
 
 
     const deletePlan = ()=>{
-        dispatch(planActions.deletePlanServer(planId, password));
-        history.push("/")
-        // history.push("/")
+        if(password===""){
+            window.alert("비밀번호를 입력하지 않았습니다.");
+            handleDelPopup(false);
+        }else{
+            dispatch(planActions.deletePlanServer(planId, password));
+            history.push("/")
+        }
+    
     }
 
     const [deletepopup, handleDelPopup] = React.useState(false);
@@ -32,7 +37,14 @@ const PlanDetail = (props) =>{
     } 
     
     const editPlan = ()=>{
-        dispatch(planActions.editPlanServer(planId,new_plan, password ))
+        if(title===""||content===""|| password===""){
+            window.alert("입력하지 않은 내용이 있습니다!");
+            handleEditPopup(false);
+
+        }else{
+            dispatch(planActions.editPlanServer(planId,new_plan, password ))
+        }
+     
     }
 
 
@@ -41,30 +53,40 @@ const PlanDetail = (props) =>{
         <React.Fragment >
          
             <Grid 
+              
                 padding="20px" 
                 height="500px" 
                 border_radius="20px"
-                bgcolor="white"
+              
                  margin="55px" 
                  max_width="500px" 
-                shadow= "rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px"
+                
+                shadow= "rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px"
                >
-               <Grid height="350px" textalign="center" >
-                   <Text fontsize="30px">{props.title}</Text>
-                     <Text>{props.content}</Text>
+               <Grid height="350px" textalign="center"   overflow="scroll">
+                   <Text fontsize="50px">{props.title}</Text>
+                 
+                   <Text fontsize="30px">{props.content}</Text>
                </Grid>
                
-                 <Grid is_flex width="100px" >
-                     <CreateIcon font-size="large" 
+              
+              <Grid  display="flex" justify="right" margin="20px 0px 0px 0px" >
+                  <Grid width="50px" >
+                  <CreateIcon font-size="large"  
                      onClick={()=>{
                         handleEditPopup(!editpopup);
                      }}/>
+                      </Grid>
+                      <Grid width="50px" >
                     <DeleteOutlineIcon font-size="large"
                     
                     onClick={()=>{
                         handleDelPopup(!deletepopup);
                     }}/>
 
+                    </Grid>
+
+              
                     {deletepopup&& 
                         <PasswordPop>
                         <Grid padding="20px">
@@ -148,11 +170,12 @@ const PasswordPop = styled.div`
     height: 200px;
     position: absolute;
     margin: 0 auto;
-    left: 50%;
-    top: 50%;
+    top:80%;
+    left:20%;
     z-index:100;
     background-color: white;
     border-radius: 20px;
+    box-shadow: rgba(255, 255, 255, 0.1) 0px 1px 1px 0px inset, rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
 `;
 
 const EditPop = styled.div`
@@ -160,10 +183,11 @@ const EditPop = styled.div`
     height: 400px;
     position: absolute;
     margin: 0 auto;
-    left: 50%;
-    top: 50%;
+    top:70%;
+    left:20%;
     z-index:100;
     background-color: white;
     border-radius: 20px;
+    box-shadow: rgba(255, 255, 255, 0.1) 0px 1px 1px 0px inset, rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
 `;
 export default PlanDetail;

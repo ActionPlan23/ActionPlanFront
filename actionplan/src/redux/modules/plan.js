@@ -97,7 +97,8 @@ const addPlanServer = (new_plan) => {
 
     })
     .then((res)=>{
-      dispatch(addPlan({...new_plan, planId: res.data.planId}));
+      console.log(res.data);
+      dispatch(addPlan({...new_plan, planId: res.data.planId, countReply: res.data.countReply}));
     
     })
     .catch((err)=>{
@@ -240,27 +241,3 @@ export { actionCreators };
 
 
 
-// const getPosts = async () => {
-//     try {
-//       const userPosts = await axios.get("http://localhost:3000/data/data.json")
-      
-//       console.log(userPosts.data.data);
-    
-//     } catch (err) {
-//       console.error(err.message);
-//     }
-//     axios.post("http://localhost:3000/data/data.json",{
-//       firstName: 'Fred',
-//       lastName: 'flfl',
-//     })
-//     .then(function (response) {
-//       console.log(response);
-//     })
-//     .catch(function (error) {
-//       console.log(error);
-//     })
-//   };
-
-//   useEffect(()=>{
-//       getPosts();
-//   })

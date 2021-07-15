@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 const Button = (props) => {
-    const {hovershadow, shadow,position,bgcolor, fontcolor, children, _onClick, margin, padding, width, height  } = props;
+    const {hovercolor, hovershadow, shadow,position,bgcolor, fontcolor, children, _onClick, margin, padding, width, height  } = props;
 
     const styles = {
         margin: margin,
@@ -12,7 +12,8 @@ const Button = (props) => {
         fontcolor: fontcolor,
         height: height,
         shadow:shadow,
-        hovershadow:hovershadow
+        hovershadow:hovershadow,
+        hovercolor:hovercolor
         
      
     }
@@ -43,7 +44,8 @@ Button.defaultProps = {
     height: "40px",
     position:false,
     shadow:"",
-    hovershadow:""
+    hovershadow:"",
+    hovercolor: false,
 
 
 }
@@ -62,7 +64,7 @@ const Btn = styled.button`
   ${(props) => (props.fontcolor ? `color: ${props.fontcolor};` : "")}
   box-shadow: ${(props)=> (props.shadow)};
   &:hover {
-
+      background-color: ${(props)=> (props.hovercolor)};
       box-shadow:${(props)=> (props.hovershadow)};
   }
  

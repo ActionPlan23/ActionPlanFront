@@ -15,7 +15,13 @@ const Comment = (props) =>{
    
 
     const deleteReply = ()=>{
-        dispatch(replyActions.deleteReplyServer(replyId, password));
+        if(password===""){
+            window.alert("비밀번호를 입력하세요!");
+            setDelPopup(false);
+        }else{
+            dispatch(replyActions.deleteReplyServer(replyId, password));
+        }
+      
     }
 
     const new_reply = {
@@ -23,30 +29,42 @@ const Comment = (props) =>{
         replyPassword: password
     }
     const editReply = ()=>{
-        dispatch(replyActions.editReplyServer(replyId, new_reply, password));
+        if(password===""|| content===""){
+            window.alert("입력하지 않은 항목이 있어요!");
+            setEditPopup(false);
+        }
+        else{
+            dispatch(replyActions.editReplyServer(replyId, new_reply, password));
+        }
+       
     }
   
 
     return(
         <React.Fragment>
-            <Grid is_flex border="1px solid black" margin="0px 0px 10px 0px">
-                <Text>{replyContent}</Text>
-                <Text>작성자 ={replyContent}</Text>
-                <Grid is_flex width="210px">
-                <Button width="100px"
+            <Grid is_flex border="1px solid black" bgcolor="white">
+            <Grid  margin="0px 0px 10px 0px" padding="2px 10px">
+                <Text fontweight="bold">{replyContent}</Text>
+                <Text fontsize="12px">작성자 : {replyContent}</Text>
+            </Grid>
+            <Grid is_flex width="300px" padding="0px 10px">
+                <Button width="90px" 
+                
+                hovercolor="#F3E5ED"
                 _onClick = {()=>{
-                    setEditPopup(true);
+                    setEditPopup(!editpopup);
                 }}
                 >수정</Button>
-                <Button width="100px"
+                <Button 
+                width="90px"
+                hovercolor="#F3E5ED"
                 _onClick={
                     ()=>{
-                        setDelPopup(true);
+                        setDelPopup(!deletepopup);
                     }
                 }>삭제</Button>
                 </Grid>
-               
-            </Grid>
+                </Grid>
 
             { deletepopup && 
                  <PasswordPop>
@@ -114,6 +132,7 @@ const PasswordPop = styled.div`
     z-index:100;
     background-color: white;
     border-radius: 20px;
+    box-shadow: rgba(255, 255, 255, 0.1) 0px 1px 1px 0px inset, rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
 `;
 
 const EditPopup = styled.div`
@@ -126,6 +145,7 @@ const EditPopup = styled.div`
     z-index:100;
     background-color: white;
     border-radius: 20px;
+    box-shadow: rgba(255, 255, 255, 0.1) 0px 1px 1px 0px inset, rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
 `;
 
 export default Comment;

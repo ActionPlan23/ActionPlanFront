@@ -2,7 +2,7 @@ import React from 'react';
 import styled from "styled-components";
 
 const Grid = (props) => {
-    const { max_width,transition,hovertransition,hovershadow, hovercolor,shadow, border_radius, left, position, is_flex, curser, layout, children, padding, margin, border, width, height, display, alignit, justify, flexdir, textalign, bgcolor, _onClick } = props;
+    const {overflow, max_width,transition,hovertransition,hovershadow, hovercolor,shadow, border_radius, left, position, is_flex, curser, layout, children, padding, margin, border, width, height, display, alignit, justify, flexdir, textalign, bgcolor, _onClick } = props;
     const styles = {
         padding: padding,
         margin: margin,
@@ -26,7 +26,8 @@ const Grid = (props) => {
         hovershadow:hovershadow,
         hovertransition:hovertransition,
         transition:transition,
-        max_width:max_width
+        max_width:max_width,
+        overflow: overflow,
     }
     return (
         <React.Fragment>
@@ -62,12 +63,13 @@ Grid.defaultProps = {
     hovershadow:"",
     hovertransition:"",
     transition:"",
-    max_width: ""
+    max_width: "",
+    overflow:"hidden"
 }
 const GridBox = styled.div`
     width: ${(props)=>props.width};
     box-sizing: border-box;
-    overflow: hidden;
+    overflow: ${(props)=>props.overflow};
     max-width: ${(props)=>props.max_width};
     ${(props) => (props.padding ? `padding: ${props.padding};` : "")}
     ${(props) => (props.margin ? `margin: ${props.margin};` : "")}
@@ -92,6 +94,11 @@ const GridBox = styled.div`
         transform:  ${(props)=> props.hovertransition};
     }
     font-family: 'SeoulNamsanM';
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+    &::-webkit-scrollbar {
+        display: none; /* Chrome, Safari, Opera*/
+    }
 `;
 
 export default Grid;

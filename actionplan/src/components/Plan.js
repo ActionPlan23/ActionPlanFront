@@ -18,6 +18,7 @@ const Plan = (props) => {
     return (
         <React.Fragment>
             <Grid 
+          
             shadow= "rgba(0, 0, 0, 0.1) 0px 4px 12px"
            transition="all ease 0.5s"
            hovertransition=" scale( 1.05, 1.05 )"

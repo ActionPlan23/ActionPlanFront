@@ -30,7 +30,13 @@ const CommentsPage = (props) =>{
    }
 
    const addComment = ()=>{
-      dispatch(replyActions.addReplySV(new_reply,plan_id));
+       if(password===""|| writer===""){
+           window.alert("입력하지않은 항목이 있어요!");
+       }
+       else{
+        dispatch(replyActions.addReplySV(new_reply,plan_id));
+       }
+    
    }
 
     React.useEffect(()=>{
@@ -41,18 +47,20 @@ const CommentsPage = (props) =>{
         <React.Fragment>
         <OutterBox>
             
-            <Grid margin="0 auto"is_flex  max_width="70vw" bgcolor="red">
+            <Grid margin="0 auto"is_flex  max_width="70vw" >
                     <PlanDetail {...plan}></PlanDetail>
                 
-                <Grid width="30vw" padding="0 80px 0 0 ">
+                <Grid width="30vw" height="60vh"  >
                     <Grid is_flex  margin="0px 0px 30px 0px">
-                        <Input placeholder="댓글 달기"
+                        <Input  placeholder="댓글 달기"
                             _onChange = {changeContents}
                             value={comment}
                         ></Input>
                         <Button width="100px"
+                        shadow="rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px"
+                        hovershadow="rgba(0, 0, 0, 0.1) 0px 1px 2px 0px "
                         _onClick={()=>{
-                           setPopup(true)
+                           setPopup(!popup)
                         }}
                         >작성</Button>
                     </Grid>
@@ -87,6 +95,8 @@ const CommentsPage = (props) =>{
                                     addComment();
                                     setPopup(false);
                                     setComment("")
+                                    setPassword("");
+                                    setWriter("");
                                 }} >확인</Button>
                         </Grid>
                         </PasswordPop>}
@@ -107,16 +117,17 @@ const PasswordPop = styled.div`
     z-index:100;
     background-color: white;
     border-radius: 20px;
+    box-shadow: rgba(255, 255, 255, 0.1) 0px 1px 1px 0px inset, rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
 `;
 const OutterBox = styled.div`
-    background-color: lightpink;
+    background-color: white;
     border-radius: 50px;
     max-width: 90vw;
     margin: 0 auto;
     padding: 30px;
     box-sizing: border-box;
     justify-content: center;
-    
+    box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
 `;
 
 export default CommentsPage;

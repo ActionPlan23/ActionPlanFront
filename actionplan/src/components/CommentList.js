@@ -3,6 +3,7 @@ import { Grid } from "../elements";
 import Comment from "./Comment";
 import { actionCreators as replyActions} from "../redux/modules/reply";
 import { useSelector, useDispatch } from "react-redux";
+import styled from "styled-components";
 
 const CommentList = (props) =>{
     const dispatch = useDispatch();
@@ -17,11 +18,14 @@ const CommentList = (props) =>{
     if(!replyList){
         return <div>로딩중</div>
     }
+    if(replyList.length===0){
+        return <div>아직 댓글이 없어요!</div>
+    }
 
         return(
             <React.Fragment>
                 {/* Grid에 overflow필요 */}
-                <Grid>
+                <Grid height="50vh" overflow="scroll">
                {
                    replyList.map((p, idx)=>{
                         return (<Comment key={p.planId} {...p}></Comment>)

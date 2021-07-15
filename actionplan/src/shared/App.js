@@ -15,6 +15,27 @@ import './App.css';
 function App() {
   const dispatch = useDispatch();
 
+  const getRandomColor = function(_isAlpha) {
+    let r = getRand(0, 255),
+    g = getRand(0, 255),
+    b = getRand(0, 255),
+    a = getRand(0, 10) / 10;
+  
+    let rgb = _isAlpha ? 'rgba' : 'rgb';
+    rgb += '(' + r + ',' + g + ',' + b;
+    rgb += _isAlpha ? ',' + a + ')' : ')';
+  
+    return rgb;
+  
+    // Return random number from in to max
+    function getRand(min, max) {
+      if (min >= max) return false;
+      return ~~(Math.random() * (max - min + 1)) + min;
+    };
+  };
+
+  let bgcolorrandom = getRandomColor();
+
   useEffect(()=>{
     dispatch(planActions.getPlansSV());
 }, []);
@@ -22,8 +43,8 @@ function App() {
   return (
     <React.Fragment>
       <ConnectedRouter history={history}>
-        <Grid bgcolor="#F3E5ED" padding="0px 0px 150px 0px">
-        <Grid padding="20px 0px 0px 20px" bgcolor="#F3E5ED" justify="center"margin="0 auto">
+        <Grid bgcolor= {bgcolorrandom} padding="0px 0px 150px 0px">
+        <Grid padding="20px 0px 0px 20px" bgcolor={bgcolorrandom} justify="center"margin="0 auto">
           <a title="깃허브 보러가기"href="https://github.com/ActionPlan23"><GitHubIcon fontSize="large"/></a>
           </Grid>
           <Header></Header>
