@@ -7,15 +7,15 @@ import moment from "moment";
 
 const Header = (props) => {
 
-    let today =  moment().format("YYYY-MM-DD");
+    let today =  moment().format("YYYY년 MM월 DD일");
    
     return (
-        <Grid 
-        height="350px" display="flex" 
+        <Grid margin="0px 0px 50px 0px"
+        height="350px" display="flex"
        
         >
             <Grid display="flex" alignit="center" flexdir="column">
-                <Text color="black" fontsize="40px">오늘의 목표</Text>
+                <Text margin="80px 0px 30px 0px" color="black" fontsize="50px">오늘의 목표</Text>
                 <Text color="black" fontsize="25px">오늘의 목표를 적고 사람들과 공유하세요!</Text>
                 <Text padding="0" margin="0" fontsize="25px">{today}</Text>
             </Grid>

@@ -67,6 +67,7 @@ Grid.defaultProps = {
 const GridBox = styled.div`
     width: ${(props)=>props.width};
     box-sizing: border-box;
+    overflow: hidden;
     max-width: ${(props)=>props.max_width};
     ${(props) => (props.padding ? `padding: ${props.padding};` : "")}
     ${(props) => (props.margin ? `margin: ${props.margin};` : "")}
@@ -90,6 +91,7 @@ const GridBox = styled.div`
         box-shadow: ${(props)=> props.hovershadow};
         transform:  ${(props)=> props.hovertransition};
     }
+    font-family: 'SeoulNamsanM';
 `;
 
 export default Grid;

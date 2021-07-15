@@ -22,7 +22,6 @@ const PlanWrite = (props) => {
 
   const addPlan = () => {
     dispatch(planActions.addPlanServer(plan));
-    // dispatch(planActions.getPlansSV());
     history.push("/")
     console.log(plan,"작성한 플랜");
   }

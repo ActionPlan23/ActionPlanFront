@@ -27,7 +27,7 @@ const PlanList = () => {
 
     return (
         <React.Fragment>
-            <Grid>
+            <Grid >
             <Grid justify="center" width="500px" display="flex" margin="0 auto" >
                
                 <ButtonBox 
@@ -64,6 +64,7 @@ const PlanList = () => {
             </Grid>
             </Grid>
          
+       
          <OutterBox is_today={is_today}>
             <GridBox >
             {list==="" ? 
@@ -78,36 +79,70 @@ const PlanList = () => {
             }
             </GridBox>
             </OutterBox>
+            
+          
+
         </React.Fragment>
     )
 };
 
 const GridBox = styled.div`
     justify-content: center;
+    align-items: center;
     margin: 0 auto;
     display: grid;
-    grid-template-columns : repeat(3, 1fr);
+    grid-template-columns : repeat(4, 1fr);
     max-width: 80vw;
     border-radius: 50px;
 `;
 
 const OutterBox = styled.div`
-    ${(props) => (props.is_today ? `background: blue;` : `background: yellow;`)}
+    ${(props) => (props.is_today ? `background: white;` : `background: white;`)}
     border-radius: 50px;
     max-width: 90vw;
     margin: 0 auto;
-    padding: 30px 0 0 0 ;
+    padding: 80px 0 ;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
     
 `;
 
 const ButtonBox = styled.div`
-    ${(props) => (props.is_today ? `background: blue;` : '' )}
-    ${(props) => (props.is_past ? `background: yellow;` : '' )}
+    ${(props) => (props.is_today ? `background: white;` : '' )}
+    ${(props) => (props.is_past ? `background: white;` : '' )}
     width: 140px;
-    height: 70px;
-    border-radius: 50px 50px 0 0;
+    height: 80px;
+    border-radius: 50px 50px 20px 0px;
     text-align: center;
+    position: relative;
+ 
+    &:before{
+        content: "";
+        position: absolute;
+        background-color: transparent;
+        bottom: 0px;
+        left: -50px;
+        height: 25px;
+        width: 50px;
+        border-bottom-right-radius: 25px;
+        ${(props) => (props.is_today ? ` box-shadow: 25px 0px 0 0 white;` : '' )}
+        ${(props) => (props.is_past ? ` box-shadow: 25px 0px 0 0 white ;` : '' )}
+      
+    }
+    &:after{
+        content: "";
+        position: absolute;
+        background-color: transparent;
+        bottom: 0px;
+        left: 140px;
+        height: 25px;
+        width: 55px;
+        border-bottom-left-radius: 25px;
+        ${(props) => (props.is_today ? ` box-shadow: -35px 1px  0 white;` : '' )}
+        ${(props) => (props.is_past ? ` box-shadow: -31px 0px 0 0 white ;` : '' )}
+      
+    }
 `;
+
 
 
 export default PlanList;

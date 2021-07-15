@@ -97,9 +97,6 @@ const addPlanServer = (new_plan) => {
 
     })
     .then((res)=>{
-      console.log(res)
-      console.log("추가", res.data.planId);
-
       dispatch(addPlan({...new_plan, planId: res.data.planId}));
     
     })

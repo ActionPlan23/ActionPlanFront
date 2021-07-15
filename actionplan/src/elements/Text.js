@@ -32,6 +32,11 @@ const P = styled.p`
     ${(props) => (props.fontcolor ? `color: ${props.fontcolor};` : "")}
     ${(props) => (props.margin ? `margin: ${props.margin};` : "")}
     ${(props) => (props.textalign ? `text-align: ${props.textalign};` : "")}
+    transition: all ease 0.3s;
+    &:hover{
+        transform: scale( 1.05, 1.05 );
+        
+    }
 `;
 
 export default Text;
