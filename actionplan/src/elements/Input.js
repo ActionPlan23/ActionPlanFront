@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 const Input = (props) => {
-    const {children, placeholder, type, _onChange, value, textarea, width, border, border_radius,padding } = props;
+    const {onSubmit,children, placeholder, type, _onChange, value, textarea, width, border, border_radius,padding } = props;
     const styles = {width: width, border: border, border_radius: border_radius, padding: padding }
     if (textarea) {
         return (
@@ -29,6 +29,11 @@ const Input = (props) => {
              onChange={_onChange}
              value={value}
              {...styles}
+             onKeyPress ={(e)=>{
+                if(e.key === "Enter"){
+                  onSubmit(e);
+                }
+              }}
              />
         </React.Fragment>
     );
@@ -45,6 +50,7 @@ Input.defaultProps = {
     border_radius : "0px",
     width: "100%",
     padding: "12px 4px",
+    onSubmit:()=>{}
 }
 
 const Label = styled.label`

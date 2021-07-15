@@ -96,7 +96,9 @@ const PlanWrite = (props) => {
                 setPassword(e.target.value);
             }}
               value={password}
-              type="password">
+              type="password"
+              onSubmit={addPlan}>
+             
                 <Text fontsize="15px" fontweight="bold">
                     비밀번호
                 </Text>

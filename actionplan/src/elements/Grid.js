@@ -93,7 +93,7 @@ const GridBox = styled.div`
         box-shadow: ${(props)=> props.hovershadow};
         transform:  ${(props)=> props.hovertransition};
     }
-    font-family: 'SeoulNamsanM';
+    font-family: 'KyoboHand';
     -ms-overflow-style: none; /* IE and Edge */
     scrollbar-width: none; /* Firefox */
     &::-webkit-scrollbar {

@@ -55,6 +55,7 @@ const CommentsPage = (props) =>{
                         <Input  placeholder="댓글 달기"
                             _onChange = {changeContents}
                             value={comment}
+                            onSubmit={()=>{setPopup(!popup)}}
                         ></Input>
                         <Button width="100px"
                         shadow="rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px"
@@ -87,6 +88,13 @@ const CommentsPage = (props) =>{
                                 placeholder="이름을 입력하세요."
                                 _onChange={(e)=>{
                                  setWriter(e.target.value)
+                                }}
+                                onSubmit={()=>{
+                                    addComment();
+                                    setPopup(false);
+                                    setComment("")
+                                    setPassword("");
+                                    setWriter("");
                                 }}
                             ></Input>
 

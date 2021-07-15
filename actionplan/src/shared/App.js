@@ -34,7 +34,7 @@ function App() {
     };
   };
 
-  let bgcolorrandom = getRandomColor();
+  let bgcolorrandom = getRandomColor(true);
 
   useEffect(()=>{
     dispatch(planActions.getPlansSV());
@@ -43,10 +43,10 @@ function App() {
   return (
     <React.Fragment>
       <ConnectedRouter history={history}>
-        <Grid bgcolor= {bgcolorrandom} padding="0px 0px 150px 0px">
-        <Grid padding="20px 0px 0px 20px" bgcolor={bgcolorrandom} justify="center"margin="0 auto">
+        <Grid bgcolor= {bgcolorrandom} padding="10px 10px 150px 10px">
+        {/* <Grid padding="20px 0px 0px 20px" bgcolor= {bgcolorrandom} justify="center"margin="0 auto"> */}
           <a title="깃허브 보러가기"href="https://github.com/ActionPlan23"><GitHubIcon fontSize="large"/></a>
-          </Grid>
+          {/* </Grid> */}
           <Header></Header>
           <Route path="/" exact component={PlanList} />
           <Route path="/write" exact component={PlanWrite} />

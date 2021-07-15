@@ -44,8 +44,8 @@ const Comment = (props) =>{
         <React.Fragment>
             <Grid is_flex border="1px solid black" bgcolor="white">
             <Grid  margin="0px 0px 10px 0px" padding="2px 10px">
-                <Text fontweight="bold">{replyContent}</Text>
-                <Text fontsize="12px">작성자 : {replyContent}</Text>
+                <Text margin="10px"fontweight="bold" fontsize="19px">{replyContent}</Text>
+                <Text margin="10px" fontsize="17px">작성자 : {replyWriter}</Text>
             </Grid>
             <Grid is_flex width="300px" padding="0px 10px">
                 <Button width="90px" 
@@ -77,11 +77,17 @@ const Comment = (props) =>{
                          _onChange={(e)=>{
                              setPassword(e.target.value);
                          }}
+                         onSubmit={()=>{
+                            deleteReply();
+                            setDelPopup(false);
+                            setPassword("")
+                         }}
                      ></Input>
                          <Button
                          _onClick={()=>{
                             deleteReply()
                             setDelPopup(false)
+                            setPassword("")
                          }} >확인</Button>
                  </Grid>
                  </PasswordPop>
@@ -108,11 +114,19 @@ const Comment = (props) =>{
                          _onChange={(e)=>{
                              setPassword(e.target.value);
                          }}
+                         onSubmit={()=>{
+                            editReply()
+                            setEditPopup(false)
+                            setPassword("")
+                            setContent("")
+                         }}
                      ></Input>
                          <Button
                          _onClick={()=>{
                             editReply()
                             setEditPopup(false)
+                            setPassword("")
+                            setContent("")
                          }} >확인</Button>
                  </Grid>
                 </EditPopup>
