@@ -58,4 +58,6 @@ http://hyeonju.shop
 
 <br>
 
-## 5. 블로그
+## 5. 에러발생과 해결
+: [블로그에서 확인](https://sso-feeling.tistory.com/491)
+
