@@ -149,7 +149,6 @@ const deletePlanServer = (plan_id, password) => {
       }
     })
     .then((res)=>{
-      console.log("삭제", res.data);
       window.alert("삭제 했습니다!")
       dispatch(deletePlan(plan_id, password));
      
